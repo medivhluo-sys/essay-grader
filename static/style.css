@@ -1,0 +1,167 @@
+/* === Reset & Base === */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+body.bg {
+  font-family: -apple-system, "PingFang SC", "Microsoft YaHei", "Helvetica Neue", sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  color: #333;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 36px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+}
+
+/* === Submit Page === */
+.submit-header { text-align: center; margin-bottom: 24px; }
+.submit-header h1 { font-size: 1.6rem; margin-bottom: 4px; }
+.subtitle { color: #888; font-size: 0.9rem; }
+
+.lang-toggle { display: flex; gap: 8px; justify-content: center; margin-bottom: 24px; }
+.lang-toggle button {
+  padding: 8px 24px; border: 2px solid #e0e0e0; border-radius: 20px;
+  background: #fff; cursor: pointer; font-size: 0.9rem; transition: all 0.2s;
+}
+.lang-toggle button.active { background: #2563eb; color: #fff; border-color: #2563eb; }
+
+.field { margin-bottom: 20px; }
+.field label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.9rem; }
+
+textarea {
+  width: 100%; border: 2px solid #e0e0e0; border-radius: 10px;
+  padding: 14px; font-size: 0.95rem; resize: vertical; font-family: inherit;
+  transition: border-color 0.2s; line-height: 1.8;
+}
+textarea:focus { outline: none; border-color: #2563eb; }
+
+.upload-zone {
+  border: 2px dashed #ccc; border-radius: 10px; padding: 24px;
+  text-align: center; cursor: pointer; transition: all 0.2s; background: #fafafa;
+  color: #999; font-size: 0.9rem;
+}
+.upload-zone:hover { border-color: #2563eb; background: #f0f7ff; }
+
+/* === Buttons === */
+.btn-primary {
+  width: 100%; padding: 14px; background: #2563eb; color: #fff;
+  border: none; border-radius: 10px; font-size: 1.05rem; cursor: pointer;
+  transition: background 0.2s;
+}
+.btn-primary:hover { background: #1d4ed8; }
+.btn-primary:disabled { background: #93c5fd; cursor: not-allowed; }
+.btn-primary.btn-sm { width: auto; padding: 8px 16px; font-size: 0.82rem; border-radius: 8px; }
+
+.btn-outline {
+  background: #fff; border: 1px solid #ccc; border-radius: 8px;
+  padding: 8px 16px; font-size: 0.82rem; cursor: pointer; transition: all 0.2s;
+}
+.btn-outline:hover { border-color: #2563eb; color: #2563eb; }
+.btn-outline.btn-sm { padding: 8px 16px; font-size: 0.82rem; }
+
+.btn-text { background: none; border: none; color: #888; font-size: 0.82rem; cursor: pointer; padding: 4px 8px; }
+.btn-text:hover { color: #333; }
+
+/* === Grading State === */
+.grading-card { text-align: center; padding: 60px 36px; }
+
+.spinner {
+  width: 48px; height: 48px; border: 4px solid #e0e0e0;
+  border-top-color: #2563eb; border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  margin: 0 auto 20px;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* === Result Page === */
+.result-card { padding: 28px; }
+.result-topbar {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  margin-bottom: 20px; flex-wrap: wrap; gap: 12px;
+}
+.result-topbar h2 { font-size: 1.2rem; margin-bottom: 2px; }
+.meta { color: #888; font-size: 0.82rem; }
+.result-actions { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+
+.dim-select {
+  padding: 6px 12px; border: 1px solid #ccc; border-radius: 8px;
+  font-size: 0.82rem; background: #fff; cursor: pointer;
+}
+
+.overall-comment {
+  background: #f0f7ff; border-left: 4px solid #2563eb;
+  border-radius: 8px; padding: 14px 18px; margin-bottom: 20px;
+  font-size: 0.92rem; line-height: 1.7;
+}
+
+/* === Dual Pane === */
+.dual-pane {
+  display: flex; gap: 0; border: 1px solid #e0e0e0; border-radius: 12px;
+  overflow: hidden; min-height: 400px;
+}
+
+.essay-pane {
+  flex: 1; padding: 28px; line-height: 2.2; font-size: 0.95rem;
+  border-right: 1px solid #eee; overflow-y: auto; max-height: 65vh;
+}
+.essay-pane p { margin-bottom: 14px; text-indent: 2em; }
+
+.comments-pane {
+  width: 340px; background: #fafafa; padding: 20px 16px;
+  overflow-y: auto; max-height: 65vh;
+}
+.comments-pane h3 { font-size: 0.88rem; color: #888; margin-bottom: 14px; }
+
+/* === Comment Cards === */
+.comment-card {
+  background: #fff; border-radius: 8px; padding: 12px 14px; margin-bottom: 10px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.04); cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.15s;
+}
+.comment-card:hover { box-shadow: 0 2px 10px rgba(0,0,0,0.1); transform: translateX(-2px); }
+.comment-card.target { box-shadow: 0 0 0 2px #2563eb; }
+
+.comment-header { display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+.comment-num {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 20px; height: 20px; border-radius: 50%; color: #fff;
+  font-size: 0.68rem; font-weight: 700; flex-shrink: 0;
+}
+.comment-dim { font-weight: 600; font-size: 0.82rem; }
+.comment-loc { color: #888; font-size: 0.76rem; margin-bottom: 2px; }
+.comment-issue { color: #666; font-size: 0.82rem; margin-bottom: 4px; }
+.comment-sug { color: #333; font-size: 0.84rem; line-height: 1.7; }
+.comment-sug strong { color: #2563eb; }
+
+/* === Filter Chips === */
+.filter-chips { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 16px; align-items: center; }
+.chip {
+  padding: 4px 12px; border-radius: 14px; font-size: 0.78rem;
+  background: #f0f0f0; cursor: pointer; transition: all 0.2s;
+  border: 1.5px solid transparent; user-select: none;
+}
+.chip:hover { background: #e0e0e0; }
+
+/* === Error === */
+.error-card { text-align: center; padding: 48px 36px; }
+.error-card h2 { margin-bottom: 12px; }
+.error-card p { color: #666; margin-bottom: 20px; }
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .container { padding: 16px 12px; }
+  .card { padding: 20px 16px; border-radius: 12px; }
+  .dual-pane { flex-direction: column; }
+  .essay-pane { border-right: none; border-bottom: 1px solid #eee; max-height: none; }
+  .comments-pane { width: 100%; max-height: none; }
+  .result-topbar { flex-direction: column; }
+  .result-actions { width: 100%; justify-content: flex-start; }
+}

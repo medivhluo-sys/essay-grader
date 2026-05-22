@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "bash": {
+      "allow": [
+        "pip install*",
+        "python3*",
+        "python*",
+        "git*",
+        "mkdir*"
+      ]
+    }
+  }
+}
