@@ -2,6 +2,8 @@
 
 启动: streamlit run app.py --server.port 8505
 """
+import hashlib
+import os
 import json
 import sys
 from pathlib import Path
@@ -12,6 +14,40 @@ import streamlit as st
 from dotenv import load_dotenv
 
 load_dotenv()
+
+# ---- 访问密码验证 ----
+# 本地开发：在 .streamlit/secrets.toml 中设置 APP_PASSWORD = "你的密码"
+# 云端部署：在 Streamlit Cloud → Settings → Secrets 中设置
+try:
+    APP_PASSWORD = st.secrets.get("APP_PASSWORD", "")
+except Exception:
+    APP_PASSWORD = os.getenv("APP_PASSWORD", "")
+
+
+def check_password():
+    """验证访问密码，防止他人消耗 API Token."""
+
+    if APP_PASSWORD and not st.session_state.get("authenticated"):
+        st.title("📝 作文批改助手")
+        st.caption("支持中英文作文 · DeepSeek AI 批改 · HTML/DOCX 报告导出")
+
+        pwd = st.text_input(
+            "请输入访问密码",
+            type="password",
+            placeholder="输入密码后按 Enter",
+            key="pwd_input",
+        )
+        if pwd:
+            if pwd == APP_PASSWORD:
+                st.session_state.authenticated = True
+                st.rerun()
+            else:
+                st.error("密码错误")
+        st.stop()
+
+
+check_password()
+# ---- 密码验证结束 ----
 
 from doc_parser import extract_text
 from grading import grade_essay
