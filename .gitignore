@@ -1,6 +1,7 @@
 # Essay Grader
 venv/
 .env
+.streamlit/
 __pycache__/
 *.pyc
 .DS_Store

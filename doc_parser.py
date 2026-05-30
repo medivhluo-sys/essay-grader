@@ -1,4 +1,4 @@
-"""Extract plain text from .txt and .docx files."""
+"""Extract plain text from .txt, .docx, and .pdf files."""
 from io import BytesIO
 from docx import Document
 
@@ -42,5 +42,15 @@ def _extract(filename: str, content: bytes) -> str:
                 paragraphs.append(para.text.strip())
         return '\n\n'.join(paragraphs)
 
+    elif lower.endswith('.pdf'):
+        import pdfplumber
+        pages = []
+        with pdfplumber.open(BytesIO(content)) as pdf:
+            for page in pdf.pages:
+                text = page.extract_text()
+                if text and text.strip():
+                    pages.append(text.strip())
+        return '\n\n'.join(pages)
+
     else:
-        raise ValueError(f"不支持的文件格式：{filename}。请上传 .txt 或 .docx 文件。")
+        raise ValueError(f"不支持的文件格式：{filename}。请上传 .txt、.docx 或 .pdf 文件。")
